@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Clock Body -->
+    <section>
+        <!-- CLock Heading -->
+        <h3 class="name">DIGITAL CLOCK</h3>
+        <!-- Clock Container -->
+        <div class="clock">
+            <div class="clock-box">
+                <span id="hour"></span>
+                <div class="text">Hour</div>
+            </div>
+            <div class="clock-box">
+                <span id="minute"></span>
+                <div class="text">Minute</div>
+            </div>
+            <div class="clock-box">
+                <span id="second"></span>
+                <div class="text">Second</div>
+            </div>
+            <div class="clock-box">
+                <span id="ampm"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        var hour = document.getElementById('hour');
+        var minute = document.getElementById('minute');
+        var second = document.getElementById('second');
+        var ampm = document.getElementById('ampm');
+
+        // Creating a Clock Function
+        function changeClock(){
+            // Get Times
+            let hr = new Date().getHours();
+            let mn = new Date().getMinutes();
+            let sc = new Date().getSeconds();
+            let ap = "AM";
+
+            // Changing AM to PM
+            if(hr > 12){
+                hr = hr - 12;
+                ap = "PM";
+            }
+
+            // Adding 0 before a single number
+            hr = hr < 10 ? "0" + hr : hr;
+            mn = mn < 10 ? "0" + mn : mn;
+            sc = sc < 10 ? "0" + sc : sc;
+
+            // Add Times
+            hour.innerText = hr;
+            minute.innerText = mn;
+            second.innerText = sc;
+            ampm.innerText = ap;
+
+            // Refresh Time every Second
+            setTimeout(function (){
+                changeClock()
+            }, 1000);
+        }
+        // Call the Function
+        changeClock()
+    </script>
+
+</body>
+</html>
